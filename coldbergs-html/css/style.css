@@ -354,6 +354,18 @@ a:focus {
   margin-bottom: 35px;
 }
 
+/* los siguientes valores son independientes del tamaño del círculo*/
+.product_section .box img  {
+  height: 300px;
+  width: 300px;  
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+}
+
+
+
 .product_section .box {
   margin: 10px;
   text-align: center;
