@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>Conoce sobre nosotros...</h1>
+  <div >
+    <h1><b>Conoce sobre nosotros...</b></h1>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 ">
@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="detail-box pl-md-3">
+          <div class="bg-dark p-2" style="--bs-bg-opacity: .6;">
             <div class="heading_container">
               <h2 class="">
                 ¿Quiénes somos?
@@ -32,7 +32,7 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 ">
-          <div class="detail-box pr-md-3">
+          <div class="bg-dark p-2" style="--bs-bg-opacity: .6;">
             <div class="heading_container">
               <h2 class="">
                 No pares de soñar, aquí tus antojos no tienen límites. Animate a crear tu monstershake 
@@ -48,7 +48,7 @@
         </div>
         <div class="col-md-6 ">
           <div class="img-box pl-md-3">
-            <img alt="about img" src="../images/i7.jpg" class="img-fluid" id="imagen">
+            <img alt="about img" src="../images/i7.jpg" class="img-fluid" id="imagenn">
           </div>
         </div>
       </div>
@@ -59,7 +59,11 @@
 
 <style>
 #imagen {
-      max-width: 70%;
+      max-width: 50%;
+      height: auto;
+}
+#imagenn {
+      max-width: 50%;
       height: auto;
       border-radius: 50%;
 }

@@ -3,11 +3,11 @@
     <div class="row">
         <div class="col-md-6 col-lg-5 ml-auto"></div>
         <div class="col-md-6 col-lg-5 ml-auto">
-            <div class="detail-box">
-                <h1>
+            <div class="bg-dark p-2" style="--bs-bg-opacity: .6;">
+                <h1><b>
                     Haz tu orden <br>
                     ¡A tu gusto! <br>
-                    Nosotros nos encargamos
+                    Nosotros nos encargamos</b>
                 </h1>
                 <p class="text-start">
                     {{ msg }} Es simple; primero selecciona tu antojo, luego elige el tamaño y tu helado favorito, después marca todos los toppings que deseas agregar.¡Listo! has terminado, tu momento de felicidad llegará en contados minutos. <br>

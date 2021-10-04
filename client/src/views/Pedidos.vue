@@ -1,14 +1,13 @@
 <template>
-<div>
-    <div class="container">
-        <h1>Pedidos</h1>
+<div class="container">
+    <h1><b>Pedidos</b></h1>
+    <div class="bg-dark p-2" style="--bs-bg-opacity: .6;">
 
         <b-alert 
             :show="dismissCountDown" 
             :variant="mensaje.color" 
             @dismissed="dismissCountDown=0" 
-            @dismiss-count-down="countDownChanged"
-        >
+            @dismiss-count-down="countDownChanged">
             {{mensaje.texto}}
             <b-progress
             variant="warning"
@@ -23,7 +22,7 @@
 
             <h5 class="text-start">Mesa</h5>
             <select class="form-select" aria-label="Default select example" v-model="pedido.mesa">
-                <option selected>Seleccione el numero de mesa</option>
+                <option value=0 selected>Seleccione el numero de mesa</option>
                 <option value=1>Mesa 1</option>
                 <option value=2>Mesa 2</option>
                 <option value=3>Mesa 3</option>
@@ -178,7 +177,6 @@
             </div>
             <b-button class="btn-success my-3" type="submit">Enviar Pedido</b-button>
         </form>
-
     </div>
 </div>
 </template>
@@ -189,21 +187,11 @@ export default {
 
         return {
 
-            notas:[],
             Pedidos:[],
             mensaje: {color: 'success', texto: ''},
             dismissSecs: 5,
             dismissCountDown: 0,
-            nota:{nombre:'',descripcion:''},
-            pedido:{nombre:'',mesa:'',size:'',base:'',cobertura:'',toppings:[]},
-            notaEditar: {},
-            agregar: true,
-            nombre:'',
-            mesa:'',
-            size:0,
-            base:'',
-            cobertura:'',
-            toppings:[]
+            pedido:{nombre:'',mesa:0,size:'',base:'',cobertura:'',toppings:[]},
             
         }
     },
@@ -220,6 +208,11 @@ export default {
             .then(res=>{
                 this.Pedidos.unshift(res.data);
                 this.pedido.nombre='';
+                this.pedido.mesa='';
+                this.pedido.size=false;
+                this.pedido.base=false;
+                this.pedido.cobertura=false;
+                this.pedido.toppings=[];
                 this.showAlert();
                 this.mensaje.color='success';
                 this.mensaje.texto='Pedido realizado!';
