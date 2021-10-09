@@ -7,24 +7,32 @@
             <table class="table" id="tabla">            
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
+                        <!-- <th scope="col">#</th> -->
+                        <th scope="col"><b>Nombre</b></th>
                         <th scope="col">Mesa</th>
                         <th scope="col">Base</th>
                         <th scope="col">Cobertura</th>
                         <th scope="col">Toppings</th>
-                        <th scope="col">Terminado</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in Pedidos" :key="index">
-                        <th scope="row">{{item._id}}</th>
-                        <td>{{item.nombre}}</td>
+                        <!-- <th scope="row">{{item._id}}</th> -->
+                        <td scope="row"><b>{{item.nombre}}</b></td>
                         <td>{{item.mesa}}</td>
                         <td>{{item.base}}</td>
                         <td>{{item.cobertura}}</td>
-                        <td>{{item.toppings}}</td>
-                        <td>{{item.terminado}}</td>
+                        <td>
+                            <p v-for="(i,indice) in item.toppings" :key="indice">{{i}}</p>
+                        </td>
+                        <td>{{item.estado}}</td>
+                        <td>
+                            <b-button @click="completarPedido(item._id)" 
+                            class="btn-danger btn-sm mx-2">Completar pedido
+                            </b-button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +50,7 @@ export default {
             mensaje: {color: 'success', texto: ''},
             dismissSecs: 5,
             dismissCountDown: 0,
-            pedido:{nombre:'',mesa:'',size:'',base:'',cobertura:'',toppings:[]},
+            pedido:{nombre:'',mesa:'',size:'',base:'',cobertura:'',toppings:[], estado:''},
         }
     },
 
@@ -63,7 +71,23 @@ export default {
             .catch(e=>{
                 console.log('error'+ e);
             })
+        },
+        
+        completarPedido(id){
+            console.log(id);
+            this.axios.delete(`/pedido/${id}`)
+            .then(res => {
+                const index = this.Pedidos.findIndex(item => item._id === res.data._id);
+                this.Pedidos.splice(index, 1);
+                this.mensaje.color = 'danger';
+                this.mensaje.texto = 'Pedido Terminado';
+                this.showAlert();
+            })
+            .catch(e => {
+            console.log(e.response);
+            })
         }
+
     }
 }
 </script>

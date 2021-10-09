@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/cocina',
     name: 'Cocina',
-    component: () => import(/* webpackChunkName: "pedidos" */ '../views/Cocina.vue')
+    component: () => import(/* webpackChunkName: "cocina" */ '../views/Cocina.vue')
   },
   {
     path: '/contacto',

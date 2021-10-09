@@ -8,7 +8,7 @@ const pedidoSchema = new Schema({
     base: String,
     cobertura: String,
     toppings: Array,
-    terminado: {type: Boolean, default: false}
+    estado: {type: String, default: "Sin preparar"}
 });
 
 const Pedido = mongoose.model('Pedido', pedidoSchema);
