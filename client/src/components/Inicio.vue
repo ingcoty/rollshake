@@ -1,7 +1,7 @@
 <template>
-<div class="container ">
+<div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-5 ml-auto"></div>
+        <div class="col-md-6 col-lg-7 ml-auto"></div>
         <div class="col-md-6 col-lg-5 ml-auto">
             <div class="bg-dark p-2" style="--bs-bg-opacity: .6;">
                 <h1><b>
@@ -10,11 +10,12 @@
                     Nosotros nos encargamos</b>
                 </h1>
                 <p class="text-start">
-                    {{ msg }} Es simple; primero selecciona tu antojo, luego elige el tamaño y tu helado favorito, después marca todos los toppings que deseas agregar.¡Listo! has terminado, tu momento de felicidad llegará en contados minutos. <br>
-                    Entonces, ¿ya estás listo para cumplir tu antojo?. Da click en el boton de abajo para enviar tu orden.
+                    {{ msg }} Es simple... Primero selecciona tu <b>antojo</b>, luego elige el tamaño y tu <b>helado</b> favorito, después marca todos los <b>toppings</b> que deseas agregar. <br>
+                    ¡Listo! Ya has terminado! Tu momento de felicidad llegará en pocos minutos. ¿Estás listo para cumplir tu antojo?<br>
+                    Da click en el boton de abajo para enviar tu orden.
                 </p>
                 <div class="btn-box">
-                    <a class="btn btn-danger mx-2" href="/pedidos" role="button">Arma tu pedido</a>
+                    <!-- <a class="btn btn-danger mx-2" href="/pedidos" role="button">Arma tu pedido</a> -->
                     <a class="btn btn-danger mx-2" @click="$router.push({path: '/pedidos'})" role="button">Arma tu pedido</a>
                 </div>
             </div>

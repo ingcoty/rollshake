@@ -1,6 +1,7 @@
 <template>
 <div class="container">
-    <h1><b>Pedidos</b></h1>
+    <h1><b>Haz Tu Pedido!</b></h1>
+    <hr>
     <div class="bg-dark p-2" style="--bs-bg-opacity: .6;">
 
         <b-alert 

@@ -1,6 +1,7 @@
 <template>
-<div class="container" >
-    <h1><b>Lista de pedidos para la Cocina</b></h1>
+<div class="container">
+    <h1><b>Solicitudes para la Cocina</b></h1>
+    <hr>
     <div class="bg-dark p-2" style="--bs-bg-opacity: .6;" id="tabla">
         <div>
             
