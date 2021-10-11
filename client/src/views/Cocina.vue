@@ -4,7 +4,20 @@
     <hr>
     <div class="bg-dark p-2" style="--bs-bg-opacity: .6;" id="tabla">
         <div>
-            
+            <b-alert 
+                :show="dismissCountDown" 
+                :variant="mensaje.color" 
+                @dismissed="dismissCountDown=0" 
+                @dismiss-count-down="countDownChanged">
+                {{mensaje.texto}}
+                <b-progress
+                variant="warning"
+                :max="dismissSecs"
+                :value="dismissCountDown"
+                height="4px"
+                ></b-progress>
+            </b-alert>
+
             <table class="table" id="tabla">            
                 <thead>
                     <tr>
@@ -30,8 +43,11 @@
                         </td>
                         <td>{{item.estado}}</td>
                         <td>
-                            <b-button @click="completarPedido(item._id)" 
-                            class="btn-danger btn-sm mx-2">Completar pedido
+                            <b-button @click="actualizarPedido(item)"
+                            class="btn-warning btn-sm mx-2" >completar pedido!
+                            </b-button>
+                            <b-button @click="desecharPedido(item._id)" 
+                            class="btn-danger btn-sm mx-2">Desechar pedido
                             </b-button>
                         </td>
                     </tr>
@@ -52,6 +68,7 @@ export default {
             dismissSecs: 5,
             dismissCountDown: 0,
             pedido:{nombre:'',mesa:'',size:'',base:'',cobertura:'',toppings:[], estado:''},
+            pedidoEditado:{}
         }
     },
 
@@ -74,21 +91,42 @@ export default {
             })
         },
         
-        completarPedido(id){
+        desecharPedido(id){
             console.log(id);
             this.axios.delete(`/pedido/${id}`)
             .then(res => {
                 const index = this.Pedidos.findIndex(item => item._id === res.data._id);
                 this.Pedidos.splice(index, 1);
-                this.mensaje.color = 'danger';
-                this.mensaje.texto = 'Pedido Terminado';
                 this.showAlert();
+                this.mensaje.texto = 'Pedido Desechado';
+                this.mensaje.color = 'danger';
             })
             .catch(e => {
             console.log(e.response);
             })
-        }
+        },
 
+        actualizarPedido(item){
+            this.pedidoEditado=item;
+            this.pedidoEditado.estado="Terminado";
+            this.axios.put(`/pedido/${item._id}`, item)
+            .then(res => {
+                const index = this.Pedidos.findIndex(n => n._id === this.pedidoEditado._id);
+                this.Pedidos[index].estado = this.pedidoEditado.estado;
+                this.showAlert();
+                this.mensaje.texto = 'Pedido Completado!';
+                this.mensaje.color = 'success';
+            })
+            .catch(e => {
+                console.log(e.response);
+            })
+        },
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+        showAlert() {
+            this.dismissCountDown = this.dismissSecs
+        }
     }
 }
 </script>

@@ -23,7 +23,7 @@
 
             <h5 class="text-start">Mesa</h5>
             <select class="form-select" aria-label="Default select example" v-model="pedido.mesa">
-                <option value=0 selected>Seleccione el numero de mesa</option>
+                <option selected>Seleccione el numero de mesa</option>
                 <option value=1>Mesa 1</option>
                 <option value=2>Mesa 2</option>
                 <option value=3>Mesa 3</option>
@@ -192,7 +192,7 @@ export default {
             mensaje: {color: 'success', texto: ''},
             dismissSecs: 5,
             dismissCountDown: 0,
-            pedido:{nombre:'',mesa:0,size:'',base:'',cobertura:'',toppings:[]},
+            pedido:{nombre:'',size:'',base:'',cobertura:'',toppings:[]},
             
         }
     },
@@ -209,7 +209,6 @@ export default {
             .then(res=>{
                 this.Pedidos.unshift(res.data);
                 this.pedido.nombre='';
-                this.pedido.mesa='';
                 this.pedido.size=false;
                 this.pedido.base=false;
                 this.pedido.cobertura=false;
@@ -222,12 +221,11 @@ export default {
                 console.log(e.response);
                 this.showAlert();
                 this.mensaje.color='danger';
-                this.mensaje.texto=e.response.data.error.errors.nombre.message;
-                this.mensaje.texto=e.response.data.error.errors.mesa.message;
+                this.mensaje.texto=e.response.data.error.message;              
             })
         },
         countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
+            this.dismissCountDown = dismissCountDown
         },
         showAlert() {
             this.dismissCountDown = this.dismissSecs

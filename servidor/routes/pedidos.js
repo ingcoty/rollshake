@@ -29,6 +29,23 @@ router.get('/pedido', async(req, res) => {
     }
 });
 
+// Put actualizar el pedido
+router.put('/pedido/:id', async(req, res) => {
+    const _id = req.params.id;
+    const body = req.body;
+    try {
+        const pedidoDB = await Pedido.findByIdAndUpdate(
+            _id,
+            body,
+            {new: true});
+        res.json(pedidoDB);
+    } catch (error) {
+        return res.status(400).json({
+            mensaje: 'Ocurrio un error', error
+        })
+    }
+});
+
 // Delete eliminar un pedido
 router.delete('/pedido/:id', async(req, res) => {
     const _id = req.params.id;
@@ -46,7 +63,6 @@ router.delete('/pedido/:id', async(req, res) => {
         })
     }
 });
-
 
 // Exportamos la configuración de express app
 module.exports = router;
