@@ -12,7 +12,8 @@ import path from 'path';
 const app = express();
 
 const mongoose = require('mongoose');
-const uri = 'mongodb://localhost:27017/Rollshake';
+//const uri = 'mongodb://localhost:27017/Rollshake';
+const uri = 'mongodb+srv://user_cristian:Rollshake2021@storagecv.kprqp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 
 mongoose.connect(uri, options).then(
